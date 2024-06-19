@@ -10,7 +10,7 @@ function Search() {
             <label className=" border-[1px] rounded-lg flex items-center gap-2 w-[80%] p-3 border-gray-700 bg-slate-900">
               <input
                 type="text"
-                className="grow outline-none"
+                className="grow outline-none p-0.5 rounded-md text-center"
                 placeholder="Search"
               />
             </label>
