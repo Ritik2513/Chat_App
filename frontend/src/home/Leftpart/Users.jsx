@@ -8,7 +8,7 @@ function Users() {
         Messages
       </h1>
       <div
-        className=" py-2 flex-1 overflow-y-auto"
+        className=" py-2 no-scrollbar overflow-y-auto"
         style={{ maxHeight: "calc(84vh - 10vh)" }}
       >
         <User />
