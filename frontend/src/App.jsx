@@ -6,12 +6,14 @@ import Login from "./components/Login";
 
 function App() {
   return (
-    // <div className="flex h-screen overflow-y-auto no-scrollbar">
-    //   <Left />
-    //   <Right />
-    // </div>
-    <Signup/>
-    // <Login/>
+    <>
+      {/* <div className="flex h-screen overflow-y-auto no-scrollbar">
+        // <Left />
+        // <Right />
+      </div>
+      <Signup /> */}
+      // <Login />
+    </>
   );
 }
 
