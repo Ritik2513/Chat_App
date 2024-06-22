@@ -1,10 +1,42 @@
 import React from "react";
+import { useForm } from "react-hook-form";
+import axios from "axios";
 
 function Login() {
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm();
+
+  const onSubmit = (data) => {
+    const userInfo = {
+      email: data.email,
+      password: data.password,
+    };
+    // console.log(userInfo);
+    axios
+      .post("http://localhost:4000/user/login", userInfo)
+      .then((response) => {
+        console.log(response.data);
+        if (response.data) {
+          alert("Login Successful");
+        }
+        //local storage
+        localStorage.setItem("ChatApp", JSON.stringify(response.data));
+      })
+      .catch((error) => {
+        if (error.response) {
+          alert("Error : " + error.response.data.error);
+        }
+      });
+  };
   return (
     <>
       <div className="flex h-screen items-center justify-center">
         <form
+          onSubmit={handleSubmit(onSubmit)}
           className="border border-white px-6 py-2 rounded-md space-y-3 w-96"
           action=""
         >
@@ -26,8 +58,19 @@ function Login() {
               <path d="M2.5 3A1.5 1.5 0 0 0 1 4.5v.793c.026.009.051.02.076.032L7.674 8.51c.206.1.446.1.652 0l6.598-3.185A.755.755 0 0 1 15 5.293V4.5A1.5 1.5 0 0 0 13.5 3h-11Z" />
               <path d="M15 6.954 8.978 9.86a2.25 2.25 0 0 1-1.956 0L1 6.954V11.5A1.5 1.5 0 0 0 2.5 13h11a1.5 1.5 0 0 0 1.5-1.5V6.954Z" />
             </svg>
-            <input type="text" className="grow" placeholder="Email" />
+            <input
+              type="text"
+              className="grow"
+              placeholder="Email"
+              {...register("email", { required: true })}
+            />
           </label>
+          {errors.email && (
+            <span className="text-red-500 text-sm font-semibold">
+              {" "}
+              This field is required
+            </span>
+          )}
 
           {/* password */}
           <label className="input input-bordered flex items-center gap-2">
@@ -43,8 +86,19 @@ function Login() {
                 clipRule="evenodd"
               />
             </svg>
-            <input type="password" className="grow" placeholder="Password" />
+            <input
+              type="password"
+              className="grow"
+              placeholder="Password"
+              {...register("password", { required: true })}
+            />
           </label>
+          {errors.password && (
+            <span className="text-red-500 text-sm font-semibold">
+              {" "}
+              This field is required
+            </span>
+          )}
 
           {/*text & button */}
           <div className="flex justify-between">
