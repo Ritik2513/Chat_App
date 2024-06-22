@@ -30,7 +30,14 @@ export const signup = async (req, res) => {
 
     if (newUser) {
       createTokenAndSaveCookie(newUser._id, res);
-      res.status(201).json({ message: "User Created successfully", newUser });
+      res.status(201).json({
+        message: "User Created successfully",
+        user: {
+          _id: newUser._id,
+          fullname: newUser.fullname,
+          email: newUser.email,
+        },
+      });
     }
   } catch (error) {
     console.log(error);

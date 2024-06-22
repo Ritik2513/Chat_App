@@ -1,5 +1,6 @@
 import React from "react";
 import { useForm } from "react-hook-form";
+import axios from "axios";
 
 function Signup() {
   const {
@@ -17,7 +18,30 @@ function Signup() {
     return value === password || "Password do not match";
   };
 
-  const onSubmit = (data) => console.log(data);
+  const onSubmit = (data) => {
+    const userInfo = {
+      fullname: data.fullname,
+      email: data.email,
+      password: data.password,
+      confirmPassword: data.confirmPassword,
+    };
+    // console.log(userInfo);
+    axios
+      .post("http://localhost:4000/user/signup", userInfo)
+      .then((response) => {
+        console.log(response.data);
+        if (response.data) {
+          alert("Signup Successful");
+        }
+        //local storage
+        localStorage.setItem("ChatApp", JSON.stringify(response.data));
+      })
+      .catch((error) => {
+        if (error.response) {
+          alert("Error : " + error.response.data.error);
+        }
+      });
+  };
   return (
     <>
       <div className="flex h-screen items-center justify-center">

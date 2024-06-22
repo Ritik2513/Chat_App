@@ -2,6 +2,7 @@ import express from "express";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
 import userRoute from "./routes/user.route.js";
+import cors from "cors";
 
 const app = express();
 
@@ -20,6 +21,7 @@ try {
 
 //middleware
 app.use(express.json());
+app.use(cors());
 
 //routes
 app.use("/user", userRoute);
