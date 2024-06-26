@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 import mongoose from "mongoose";
 import userRoute from "./routes/user.route.js";
 import cors from "cors";
+import cookieParser from "cookie-parser";
 
 const app = express();
 
@@ -21,6 +22,7 @@ try {
 
 //middleware
 app.use(express.json());
+app.use(cookieParser());
 app.use(cors());
 
 //routes
