@@ -30,7 +30,7 @@ function Signup() {
     };
     // console.log(userInfo);
     await axios
-      .post("http://localhost:4000/user/signup", userInfo)
+      .post("/api/user/signup", userInfo)
       .then((response) => {
         console.log(response.data);
         if (response.data) {

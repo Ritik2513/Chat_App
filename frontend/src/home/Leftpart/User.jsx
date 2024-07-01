@@ -1,6 +1,6 @@
 import React from "react";
 
-function User() {
+function User({user}) {
   return (
     <div>
       {/* avatar */}
@@ -13,8 +13,8 @@ function User() {
 
         {/* name */}
         <div>
-          <h1 className="font-bold">Akhil</h1>
-          <span>akhil@gmail.com</span>
+          <h1 className="font-bold">{user.fullname}</h1>
+          <span>{user.email}</span>
         </div>
       </div>
     </div>

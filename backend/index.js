@@ -26,7 +26,7 @@ app.use(cookieParser());
 app.use(cors());
 
 //routes
-app.use("/user", userRoute);
+app.use("/api/user", userRoute);
 
 app.get("/", (req, res) => {
   res.send("Hello");
